@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class NewCourseForm extends Component {
     
     static defaultProps = {
+        categories: [],
         onSubmit: () => {}
     };
 
@@ -56,11 +57,11 @@ class NewCourseForm extends Component {
                     <span>Category:</span>
                     <select name="category" onChange={ this.handleChange } value={ state.category } >
                         <option value='' >Select</option>
-                        <option value='JavaScript'>JavaScript</option>
-                        <option value='PHP'>PHP</option>
-                        <option value='Ruby'>Ruby</option>
-                        <option value='Python'>Python</option>
-                        <option value='C#'>C#</option>
+                        {
+                            props.categories.map( category => (
+                                <option value={ category.name }>{ category.name }</option>
+                            ))
+                        }
                     </select>
                 </label>
                 <button type="submit" >Create Course</button>
